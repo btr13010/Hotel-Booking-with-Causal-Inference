@@ -8,6 +8,6 @@ There are 2 datasets representing 2 hotels. One of the hotels (H1) is a resort h
 
 **References:**
 
-Antonio et. al. (2019). Hotel booking demand datasets. Data in Brief, Volume 22. [https://doi.org/10.1016/j.dib.2018.11.126](https://doi.org/10.1016/j.dib.2018.11.126).
+Antonio et. al. (2019). *Hotel booking demand datasets*. Data in Brief, Volume 22. [DOI](https://doi.org/10.1016/j.dib.2018.11.126)
 
-Siddharth Dixit. (2020). Beyond Predictive Models: The Causal Story Behind Hotel Booking Cancellations. [Towards Data Science](https://towardsdatascience.com/beyond-predictive-models-the-causal-story-behind-hotel-booking-cancellations-d29e8558cbaf)
+Siddharth Dixit. (2020). *Beyond Predictive Models: The Causal Story Behind Hotel Booking Cancellations*. [Towards Data Science](https://towardsdatascience.com/beyond-predictive-models-the-causal-story-behind-hotel-booking-cancellations-d29e8558cbaf)

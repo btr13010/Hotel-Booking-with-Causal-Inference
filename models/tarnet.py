@@ -2,35 +2,38 @@ import numpy as np
 import torch
 from torch import nn
 
+np.random.seed(42)
+g = torch.Generator().manual_seed(42)
+
 # a neural net with the first 3 hidden layers then separate into 2 sub-networks with 2 hidden layers computing the potential outcome in treatment and control group
 class Tarnet(nn.Module):
     def __init__(
         self,
-        input_dim,
-        num_neurons_layer=20,
+        input_dim : int,
+        hidden_units=20,
     ):
         super(Tarnet, self).__init__()
         self.linear_stack = nn.Sequential(
-            nn.Linear(input_dim, num_neurons_layer),
+            nn.Linear(input_dim, hidden_units),
             nn.ELU(),
-            nn.Linear(num_neurons_layer, num_neurons_layer),
+            nn.Linear(hidden_units, hidden_units),
             nn.ELU(),
-            nn.Linear(num_neurons_layer,num_neurons_layer),
+            nn.Linear(hidden_units,hidden_units),
             nn.ELU()
         )
         self.regressor1 = nn.Sequential(
-            nn.Linear(num_neurons_layer, num_neurons_layer/2),
+            nn.Linear(hidden_units, hidden_units//2),
             nn.ELU(),
-            nn.Linear(num_neurons_layer/2, num_neurons_layer/2),
+            nn.Linear(hidden_units//2, hidden_units//2),
             nn.ELU(),
-            nn.Linear(num_neurons_layer/2, 1)
+            nn.Linear(hidden_units//2, 1)
         )
         self.regressor2 = nn.Sequential(
-            nn.Linear(num_neurons_layer, num_neurons_layer/2),
+            nn.Linear(hidden_units, hidden_units//2),
             nn.ELU(),
-            nn.Linear(num_neurons_layer/2, num_neurons_layer/2),
+            nn.Linear(hidden_units//2, hidden_units//2),
             nn.ELU(),
-            nn.Linear(num_neurons_layer/2, 1)
+            nn.Linear(hidden_units//2, 1)
         )
         
     def forward(self, x):
@@ -66,7 +69,7 @@ def estimate(
     lr = 0.001,
 ):
     concat_true = torch.cat((outcome,treatment),1)
-    input_dim = torch.tensor(confounders.size(dim=1))
+    input_dim = confounders.size(dim=1)
 
     model = Tarnet(input_dim)
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)

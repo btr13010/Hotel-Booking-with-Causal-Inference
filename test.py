@@ -5,8 +5,8 @@ import torch
 from torch import nn
 import torch.nn.functional as F
 
-hotel_1 = pd.read_csv('H1.csv',parse_dates=True,index_col='ReservationStatusDate')
-hotel_2 = pd.read_csv('H2.csv',parse_dates=True,index_col='ReservationStatusDate')
+hotel_1 = pd.read_csv('data/H1.csv',parse_dates=True,index_col='ReservationStatusDate')
+hotel_2 = pd.read_csv('data/H2.csv',parse_dates=True,index_col='ReservationStatusDate')
 
 hotel_1 = hotel_1.replace(to_replace = '       NULL', 
                  value =np.NAN) 

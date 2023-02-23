@@ -5,7 +5,6 @@ from torch import nn
 np.random.seed(42)
 g = torch.Generator().manual_seed(42)
 
-# a neural net with the first 3 hidden layers then separate into 2 sub-networks with 2 hidden layers computing the potential outcome in treatment and control group
 class Tarnet(nn.Module):
     def __init__(
         self,
@@ -90,8 +89,8 @@ def estimate(
         loss_value.backward()
         optimizer.step()
 
-        if i % 100 == 0:
-            print("Iteration " + str(i) + " loss: " + str(loss_value.item()))
+        if i == n_iter:
+            print("Model Accuracy: " + str(loss_value.item()))
 
     concat_pred = model(confounders)
     y0_pred = concat_pred[:,0]

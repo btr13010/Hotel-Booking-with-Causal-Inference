@@ -2,6 +2,7 @@ import numpy as np
 
 from sklearn.linear_model import LogisticRegression
 from sklearn.linear_model import LinearRegression
+from sklearn.svm import SVC
 
 class XLearner:
     def __init__(
@@ -42,10 +43,10 @@ class XLearner:
         control_ite_pred = control_ite_model.predict(self.w)
 
         # calculate the propensity score 
-        prop_model = LogisticRegression().fit(self.w, self.t)
+        prop_model = SVC(kernel='linear', class_weight='balanced', probability=True).fit(self.w, self.t)
         prop_score = prop_model.predict_proba(self.w)[:, 1]
 
         # calculate the final ate
-        ite = prop_score * treated_ite_pred + (1 - prop_score) * control_ite_pred
+        ite = (prop_score) * treated_ite_pred + (1 - prop_score) * control_ite_pred
 
         return ite.mean()

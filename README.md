@@ -7,7 +7,7 @@ The dataset contains booking information for a city hotel and a resort hotel tak
 There are 2 datasets representing 2 hotels. One of the hotels (H1) is a resort hotel and the other is a city hotel (H2). Both datasets share the same structure, with 31 variables describing the 40,060 observations of H1 and 79,330 observations of H2. Each observation represents a hotel booking.
 
 This repository contains a detailed data exploration process along with a full causal inference cycle implemented in the dowhy library. Besides, different algorithms for causal estimation are also implemented from scratch in simple versions for educational purpose.
-
+---
 **References:**
 
 Antonio et. al. (2019). *Hotel booking demand datasets*. Data in Brief, Volume 22. [DOI](https://doi.org/10.1016/j.dib.2018.11.126)
